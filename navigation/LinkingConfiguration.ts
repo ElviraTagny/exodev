@@ -12,14 +12,19 @@ export default {
     screens: {
       Root: {
         screens: {
-          TabOne: {
+          Recherche: {
             screens: {
-              TabOneScreen: 'one',
+              RechercheScreen: 'recherche',
             },
           },
-          TabTwo: {
+          MesLocations: {
             screens: {
-              TabTwoScreen: 'two',
+              MesLocationsScreen: 'historique',
+            },
+          },
+          MonCompte: {
+            screens: {
+              MesLocationsScreen: 'compte',
             },
           },
         },

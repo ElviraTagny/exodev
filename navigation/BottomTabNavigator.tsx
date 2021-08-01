@@ -10,9 +10,10 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import RechercheScreen from '../screens/RechercheScreen';
+import MesLocationsScreen from '../screens/MesLocationsScreen';
+import { BottomTabParamList, RechercheParamList as RechercheParamList, MesLocationsParamList as MesLocationsParamList, MonCompteParamList as MonCompteParamList } from '../types';
+import MonCompteScreen from '../screens/MonCompteScreen';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -21,20 +22,27 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Recherche"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="Recherche"
+        component={RechercheNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-search" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="Locations"
+        component={MesLocationsNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-car" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Compte"
+        component={MonCompteNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-person" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -49,30 +57,44 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const RechercheStack = createStackNavigator<RechercheParamList>();
 
-function TabOneNavigator() {
+function RechercheNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+    <RechercheStack.Navigator>
+      <RechercheStack.Screen
+        name="RechercheScreen"
+        component={RechercheScreen}
+        options={{ headerTitle: 'Recherche' }}
       />
-    </TabOneStack.Navigator>
+    </RechercheStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const MesLocationsStack = createStackNavigator<MesLocationsParamList>();
 
-function TabTwoNavigator() {
+function MesLocationsNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+    <MesLocationsStack.Navigator>
+      <MesLocationsStack.Screen
+        name="MesLocationsScreen"
+        component={MesLocationsScreen}
+        options={{ headerTitle: 'Mes locations' }}
       />
-    </TabTwoStack.Navigator>
+    </MesLocationsStack.Navigator>
+  );
+}
+
+const MonCompteStack = createStackNavigator<MonCompteParamList>();
+
+function MonCompteNavigator() {
+  return (
+    <MonCompteStack.Navigator>
+      <MonCompteStack.Screen
+        name="MonCompteScreen"
+        component={MonCompteScreen}
+        options={{ headerTitle: 'Mon compte' }}
+      />
+    </MonCompteStack.Navigator>
   );
 }
